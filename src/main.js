@@ -6,7 +6,8 @@ import router from "./router";
 import store from "./store";
 import 'materialize-css/dist/js/materialize.min.js';
 import 'material-design-icons/iconfont/material-icons.css';
-import dateFilter from './filters/date.filter.js'
+import dateFilter from './filters/date.filter.js';
+import currencyFilter from './filters/currency.filter.js';
 import messagePlugin from '@/utils/message.plugin.js'
 import Loader from '@/components/app/Loader'
 
@@ -19,6 +20,7 @@ Vue.config.productionTip = false;
 Vue.use(messagePlugin)
 Vue.use(Vuelidate);
 Vue.filter('date', dateFilter);
+Vue.filter('currency', currencyFilter);
 Vue.component('Loader', Loader)
 
 const firebaseConfig = {

@@ -1,5 +1,7 @@
 <template>
-    <div class="app-main-layout">
+<div>
+    <Loader v-if="loading"/>
+    <div v-else class="app-main-layout">
 
       <Navbar
       @toggle-sidebar="isSidebarOpen = !isSidebarOpen"/>
@@ -17,26 +19,32 @@
             <i class="large material-icons">add</i>
         </router-link>
     </div>
+  </div>
 </div>
 </template>
 
 <script>
 import Sidebar from '@/components/app/Sidebar.vue'
 import Navbar from '@/components/app/Navbar.vue'
+import Loader from '../components/app/Loader.vue'
 
 export default {
   name: 'main-alyout',
   data: () => ({
-    isSidebarOpen: true
+    isSidebarOpen: true,
+    loading: true
   }),
   async mounted() {
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo')
     }
+
+    this.loading = false
   },
   components:{
     Sidebar,
-    Navbar
+    Navbar,
+    Loader
   }
 }
 </script>
